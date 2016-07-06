@@ -189,10 +189,13 @@ def print_diff(start_date, end_date):
     else:
         deletion = list(set(start_tuple) - set(end_tuple))
         deletion.sort()
-        if not deletion:
+        if deletion:
+            print "%s: These jobs have changed from the previous day: %s" % \
+                  (end_date.strftime("%Y-%m-%d"), deletion)
+        else:
             deletion = ''
-        print "%s: These jobs have changed from the previous day: %s" % \
-              (end_date.strftime("%Y-%m-%d"), deletion)
+            print "%s: NO job been changed from the previous day" % \
+                  (end_date.strftime("%Y-%m-%d"))
         return deletion
 
 
